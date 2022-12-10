@@ -4,9 +4,9 @@ os.environ["AOC_SESSION"] = "53616c7465645f5f1428a3a30e1aa3bd9c5faf951111cb16eda
 
 puzzle = Puzzle(year=2022, day=7)
 
-with open('2022\\day7example.txt', 'r') as f:
+with open('2022\\examples\\day7example.txt', 'r') as f:
     data = f.read()
-data = puzzle.input_data
+#data = puzzle.input_data
 
 def find_in_list(array, target, near_index):
     check_array = list()
@@ -44,7 +44,7 @@ for i, directory in reversed(directories):
         j += 1
     visited.append((i, directory, size))
 
-visited[-1] = (visited[0], visited[1], total_used_space)
+visited[-1] = (visited[-1][0], visited[-1][1], total_used_space)
 print(visited)
 print(total_used_space)
 space_to_free = 30000000 - (70000000 - total_used_space)
