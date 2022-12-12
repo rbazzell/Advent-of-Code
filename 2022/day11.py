@@ -1,5 +1,4 @@
 from aocd.models import Puzzle
-from tqdm import tqdm
 import os, operator
 os.environ["AOC_SESSION"] = "53616c7465645f5f1428a3a30e1aa3bd9c5faf951111cb16edaa38584883f8c4c0015a743934190eecaf1db7e0bb821b3168d590e18f9090193f56c1a1e14cd2"  # handout: exclude
 
@@ -79,18 +78,6 @@ Monkey.set_relief(1)
 for i in range(10000):
     for monkey in monkeys:
         monkey.inspect(monkeys)
-    if i + 1 == 1:
-        pass
-    if i + 1 == 20:
-        pass
-    if i + 1 == 1000:
-        pass
-    if i + 1 == 2000:
-        pass
-    if i + 1 == 3000:
-        pass
-    if i + 1 == 4000:
-        pass
 
 
 simean_shenanigans = sorted(monkeys, key=lambda x:x.inspected, reverse=True)[0].inspected * sorted(monkeys, key=lambda x:x.inspected, reverse=True)[1].inspected
