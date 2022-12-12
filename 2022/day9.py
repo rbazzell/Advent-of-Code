@@ -1,79 +1,80 @@
 from aocd.models import Puzzle
-from copy import deepcopy
 import os
 os.environ["AOC_SESSION"] = "53616c7465645f5f1428a3a30e1aa3bd9c5faf951111cb16edaa38584883f8c4c0015a743934190eecaf1db7e0bb821b3168d590e18f9090193f56c1a1e14cd2"  # handout: exclude
 
+def isadjacent(a, b):
+    return a[0] - 1 <= b[0] <= a[0] + 1 and a[1] - 1 <= b[1] <= a[1] + 1
+
+def isleft(a, b):
+    return a[0] <= b[0]
+
+def isright(a, b):
+    return a[0] >= b[0]
+
+def isdown(a, b):
+    return a[1] <= b[1]
+
+def isup(a, b):
+    return a[1] >= b[1]
+
+def follow(a, b):
+    match (isleft(a, b), isright(a, b), isdown(a, b), isup(a, b)):
+        case (True, False, True, True): #a is left of b, move b left 1
+            b[0] -= 1
+        case (False, True, True, True): #a is right of b, move b right 1
+            b[0] += 1
+        case (True, True, True, False): #a is below b, move b down 1
+            b[1] -=1
+        case (True, True, False, True): #a is above b, move b up 1
+            b[1] += 1
+        case (True, False, False, True): #a is UL b, move b left and up 1
+            b[0] -= 1
+            b[1] += 1
+        case (True, False, True, False): #a is DL b, move b left and down 1
+            b[0] -= 1
+            b[1] -= 1
+        case (False, True, False, True): #a is UR b, move b up and right 1
+            b[0] += 1
+            b[1] += 1
+        case(False, True, True, False): #a is DR b, move b down and right 1
+            b[0] += 1
+            b[1] -= 1
+
 puzzle = Puzzle(year=2022, day=9)
 
-with open('2022\\examples\\day9example.txt', 'r') as f:
+with open('2022\\examples\\day9example2.txt', 'r') as f:
     data = f.read()
-#data = puzzle.input_data
+data = puzzle.input_data
 data = [[line.split(" ")[0], int(line.split(" ")[1])] for line in data.split("\n")]
 
+visited_a = []
+visited_b = []
+rope_a = [[0, 0] for i in range(2)]
+rope_b = [[0, 0] for i in range(10)]
 
-def isadjacent_a(a, b):
-    return a[0] - 1 <= b[0] <= a[0] + 1 and a[1] - 1 <= b[1] <= a[1] + 1
-
-
-def isadjacent_b(a, b):
-    return a['x'] - 1 <= b['x'] <= a['x'] + 1 and a['y'] - 1 <= b['y'] <= a['y'] + 1
-    return a[0] - 1 <= b[0] <= a[0] + 1 and a[1] - 1 <= b[1] <= a[1] + 1
-
-
-def solve_a():
-    head = [0, 0] # marked as [x, y], x is horizontal, y is vertical
-    tail = [0, 0]
-
-    tail_visited = [tail.copy()] # add as (x, y, v), where v is the number of times this square was visited
-
+def move(rope, data, visited):
     for direction, distance in data:
         for i in range(distance):
-            prev_head = head.copy()
             match direction:
-                case 'U':
-                    head[1] += 1
-                case 'D':
-                    head[1] -= 1
-                case 'R':
-                    head[0] += 1
                 case 'L':
-                    head[0] -= 1
-            if not isadjacent_a(head, tail):
-                tail = prev_head.copy()
-                if tail not in tail_visited:
-                    tail_visited.append(tail.copy())
-    return len(tail_visited)
-        
-
-def solve_b():
-    tail_visited = [[0, 0]]
-    rope = [{'x':0, 'y':0} for i in range(10)]
-    for direction, distance in data:
-        for i in range(distance):
-            prev_rope = deepcopy(rope)
-            match direction:
-                case 'U':
-                    rope[0]['y'] += 1
-                case 'D':
-                    rope[0]['y'] -= 1
+                    rope[0][0] -= 1
                 case 'R':
-                    rope[0]['x'] += 1
-                case 'L':
-                    rope[0]['x'] -= 1
-            if not isadjacent_b(rope[0], rope[1]):
-                rope[1] = prev_rope[0].copy()
-                if rope[1] not in tail_visited:
-                    tail_visited.append(rope[1].copy())
-    return len(tail_visited)
+                    rope[0][0] += 1
+                case 'D':
+                    rope[0][1] -= 1
+                case 'U':
+                    rope[0][1] += 1
+            for i in range(1, len(rope)):
+                if not isadjacent(rope[i - 1], rope[i]):
+                    follow(rope[i - 1], rope[i])
+            if rope[-1] not in visited:
+                visited.append(rope[-1].copy())
 
-        
-        
+move(rope_a, data, visited_a)
+move(rope_b, data, visited_b)
 
+print(f"a: {len(visited_a)}")
+puzzle.answer_a = len(visited_a)
 
-
-
-print(f"a: {solve_a()}")
-#puzzle.answer_a = solve_a()
-
-print(f"b: {solve_b()}")
-#puzzle.answer_b = most_scenic_score
+print(f"b: {len(visited_b)}")
+puzzle.answer_b = len(visited_b)
