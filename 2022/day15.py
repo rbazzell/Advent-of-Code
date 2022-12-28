@@ -80,7 +80,6 @@ for i in range(target[1] + 1): # will take over a month to calculate, need a bet
     if target_row.count("."):
         ans_b = target_row.index(".") * 4000000 + i
         break
-    print(i)
 
 
 print(f"a: {ans_a}")
