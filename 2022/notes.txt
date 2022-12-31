@@ -1,0 +1,2 @@
+- day 8 needs a rework that works in all cases
+- day 15 part a needs a rework
