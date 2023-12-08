@@ -10,7 +10,7 @@ def parse_input(data):
 
 puzzle = Puzzle(year=2023, day=6)
 ###data = puzzle.example_data
-data = "Time:      7  15   30\nDistance:  9  40  200"
+data = puzzle.examples[0].input_data
 data = puzzle.input_data
 times, distances = parse_input(data)
 print(times, distances)
