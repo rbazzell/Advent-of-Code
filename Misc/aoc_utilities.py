@@ -19,4 +19,12 @@ def print_grid(grid):
             print(col, end="")
         print()
 
+def grid_str(grid):
+    s = ""
+    for row in grid:
+        for col in row:
+            s += col
+        s += "\n"
+    return s
+
         
