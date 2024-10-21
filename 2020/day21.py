@@ -11,17 +11,6 @@ data = input_data
 
 data = data.split("\n")
 
-class Ingredient:
-    def __init__(self, name: str):
-        self.name = name
-        self.allergens = list()
-
-    def add_allergen(self, allergen: str):
-        self.allergens.append(allergen)
-    
-    def __repr__(self):
-        return self.name
-
 class Recipe:
     def __init__(self, description: str):
         description = description.split(" (contains ")
