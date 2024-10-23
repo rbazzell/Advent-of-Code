@@ -6,7 +6,7 @@ from misc import aoc_utilities as aocu
 #                    If you are trying to save time, it is better to use a pre-existing solution (less errors, easier to read/understand)
 
 
-puzzle = aocu.get_puzzle(18, 2020)
+puzzle = aocu.get_puzzle(__file__)
 examples = puzzle.examples #returns list of Example objects
 input_data = puzzle.input_data #returns string of input data
 

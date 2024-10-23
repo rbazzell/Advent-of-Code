@@ -4,7 +4,7 @@ from misc import aoc_utilities as aocu
 
 SEA_MONSTER = [(0, 1), (1, 2), (4, 2), (5, 1), (6, 1), (7, 2), (10, 2), (11, 1), (12, 1), (13, 2), (16, 2), (17, 1), (18, 0), (18, 1), (19, 1)]
     
-puzzle = aocu.get_puzzle(20, 2020)
+puzzle = aocu.get_puzzle(__file__)
 examples = puzzle.examples #returns list of Example objects
 input_data = puzzle.input_data #returns string of input data
 

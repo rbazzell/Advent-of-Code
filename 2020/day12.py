@@ -3,7 +3,7 @@ sys.path.insert(0, '')
 from misc import aoc_utilities as aocu
 from enum import Enum
 
-puzzle = aocu.get_puzzle(12, 2020)
+puzzle = aocu.get_puzzle(__file__)
 examples = puzzle.examples #returns list of Example objects
 input_data = puzzle.input_data #returns string of input data
 
