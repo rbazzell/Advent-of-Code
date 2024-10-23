@@ -1,8 +1,8 @@
-s1, l1 = 4, 4
+"""s1, l1 = 4, 4
 s2, l2 = 0, 2
 s3, l3 = 5, 2
 s4, l4 = 3, 3
-ranges = [s1, l1, s2, l2]
+ranges = [s1, l1, s2, l2]"""
 
 def overlap(s1, l1, s2, l2):
     e1 = s1 + l1 - 1
@@ -34,8 +34,13 @@ def split_range(s, l, ss, sl):
 def conv_range(s1, l1, s2, l2):
     return s2, l1
 
-os, ol = overlap(4, 4, 4, 2)
+"""os, ol = overlap(4, 4, 4, 2)
 #print(conv_range(os, ol, 70, 2))
 
 x, y = ranges.pop(0), ranges.pop(0)
-print(x, y)
+print(x, y)"""
+
+
+x = {0:1, 1:2, 2:3}
+print(x[0])
+print(x[4])
