@@ -2,10 +2,11 @@ from aocd.models import Puzzle
 from aocd.examples import Example
 import os
 
-
-def get_puzzle(day, year):
+def get_puzzle(file:str):
+    day = int(file.split("\\")[-1][3:-3])
+    year = int(file.split("\\")[-2])
     with open("misc\\session_token.txt") as f:
-            os.environ["AOC_SESSION"] =  f.read()
+            os.environ["AOC_SESSION"] = f.read()
     return Puzzle(year=year, day=day)
 
 def check_example(puzzle, i, ans, partb=False):
