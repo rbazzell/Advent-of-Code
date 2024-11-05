@@ -1,6 +1,5 @@
 import sys
 from itertools import combinations
-from collections import deque
 sys.path.insert(0, '')
 from misc import aoc_utilities as aocu
 
@@ -187,11 +186,11 @@ def moves(elevator: Elevator, direction: str):
 
 
 def min_steps(elevator: Elevator) -> int:
-    queue = deque([(elevator, 0)])
+    queue = [(elevator, 0)]
     visited = {elevator}
 
     while queue:
-        curr_elevator, steps = queue.popleft()
+        curr_elevator, steps = queue.pop(0)
 
         if curr_elevator.final():
             return steps
