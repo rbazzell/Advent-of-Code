@@ -65,7 +65,7 @@ def compute(instructions, registers):
                 arg1 = registers[arg1]
             if not isinstance(arg2, int):
                 arg2 = registers[arg2]
-            registers[arg3] = arg1 * arg2
+            registers[arg3] = arg1 * arg2 + registers[arg3]
             pc += 6
             continue
         match command:
