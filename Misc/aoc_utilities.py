@@ -9,6 +9,12 @@ def get_puzzle(file:str):
             os.environ["AOC_SESSION"] = f.read()
     return Puzzle(year=year, day=day)
 
+def clear(puzzle: Puzzle):
+    puzzle.prose0_path.unlink()
+    puzzle.prose1_path.unlink()
+    puzzle.prose2_path.unlink()
+
+
 def check_example(puzzle, i, ans, partb=False):
     if not partb:
         return puzzle.examples[i].answer_a == ans
