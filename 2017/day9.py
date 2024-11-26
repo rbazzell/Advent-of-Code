@@ -1,7 +1,6 @@
 import sys
 sys.path.insert(0, '')
 from misc import aoc_utilities as aocu
-from itertools import cycle
 
 puzzle = aocu.get_puzzle(__file__)
 examples = puzzle.examples #returns list of Example objects
