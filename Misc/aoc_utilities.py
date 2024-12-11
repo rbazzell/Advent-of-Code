@@ -26,12 +26,16 @@ def print_grid(grid):
             print(col, end="")
         print()
 
-def grid_str(grid):
+def grid_str(grid, spaces=0):
     s = ""
     for row in grid:
         for col in row:
-            s += col
+            s += spacify(str(col), spaces)
         s += "\n"
     return s
 
-        
+def spacify(s: str, spaces: int):
+    if spaces > len(s):
+        return s + "".join(" " for _ in range(spaces - len(s)))
+    else:
+        return s
